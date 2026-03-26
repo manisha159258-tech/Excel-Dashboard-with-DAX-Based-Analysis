@@ -30,3 +30,4 @@ Refer to Sales_Quantity_DAX_Measures.txt for formulas used in the dashboard
 
 © 2026 Manisha Vishwakarma  
 All rights reserved. This project may be viewed and downloaded for **personal or educational use only**. Commercial use or claiming it as your own is prohibited.
+This project is licensed under [CC BY-NC 4.0](LICENSE) — see LICENSE file for details.
