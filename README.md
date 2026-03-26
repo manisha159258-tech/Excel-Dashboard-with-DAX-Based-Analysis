@@ -27,3 +27,6 @@ Download Sales_Quantity_Analysis_Dashboard.xlsx
 Open it in Excel Desktop
 Use slicers to filter data and explore charts interactively
 Refer to Sales_Quantity_DAX_Measures.txt for formulas used in the dashboard
+
+© 2026 Manisha Vishwakarma  
+All rights reserved. This project may be viewed and downloaded for **personal or educational use only**. Commercial use or claiming it as your own is prohibited.
