@@ -1,0 +1,92 @@
+# DAX Measures for Excel Dashboard
+
+1. Avg Order Value (K)
+Formula:
+= [Total Order]
+Example: Salomon Shoes → 25.4M
+Description: Average order value in thousands.
+
+2. Total Order
+Formula:
+= [Top Product]
+Example: Salomon Shoes → 25.4M
+Description: Total sales for the top product.
+
+3. Top Product
+Formula:
+= CONCATENATEX(
+    TOPN(
+        1,
+        SUMMARIZE(Table1, Table1[Product], "total", SUM(Table1[Sales])),
+        [total],
+        DESC
+    ),
+    Table1[Product] & "-" & FORMAT([total]/1000000,"0.0") & "M"
+)
+Example: Salomon Shoes → 25.4M
+Description: Top-selling product with total sales in millions.
+
+4. Top Region
+Formula:
+= CONCATENATEX(
+    TOPN(
+        1,
+        SUMMARIZE(Table1, Table1[Region], "total", SUM(Table1[Sales])),
+        [total],
+        DESC
+    ),
+    Table1[Region] & "-" & FORMAT([total]/1000000,"0.0") & "M"
+)
+Example: West → 45.7M
+Description: Region with highest total sales in millions.
+
+5. YoY Growth %
+Formula:
+VAR LatestYear = YEAR(MAX(Table1[Date]))
+VAR CurrentSales = CALCULATE([Total Sale], FILTER(ALL(Table1), YEAR(Table1[Date]) = LatestYear))
+VAR LastYearSales = CALCULATE([Total Sale], FILTER(ALL(Table1), YEAR(Table1[Date]) = LatestYear - 1))
+RETURN DIVIDE(CurrentSales - LastYearSales, LastYearSales) * 100
+Example: 87.59%
+Description: Year-over-year sales growth percentage.
+
+6. Total Outlet Sales
+Formula:
+= CALCULATE(COUNTROWS('Table1'), 'Table1'[Sales Method] = "Outlet")
+Example: 3010
+Description: Counts sales made via outlet method.
+
+7. Unit Price Average
+Formula:
+= AVERAGE([Unit Price])
+Example: 45.22
+Description: Average unit price of products.
+
+8. Total Quantity
+Formula:
+= SUM([Qty])
+Example: 2,803,643
+Description: Total units sold.
+
+9. Average Quantity
+Formula:
+= AVERAGE([Qty])
+Example: 290.86
+Description: Average units sold per order.
+
+10. Total Sale (M)
+Formula:
+= FORMAT(SUM([Sales])/1000000, "0.0") & "M"
+Example: 131.6M
+Description: Total sales in millions.
+
+11. Average Sale
+Formula:
+= FORMAT(AVERAGE([Sales])/1000, "0.0") & "K"
+Example: 13.7K
+Description: Average sale per transaction in thousands.
+
+12. Total Sale
+Formula:
+= SUM([Sales])
+Example: 131,627,891
+Description: Total sales in raw currency.
